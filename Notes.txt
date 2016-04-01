@@ -1,0 +1,13 @@
+/* The goal of this project is:
+ * - to utilize Deep Learning algorithms for effective classification of blocking artifacts, 
+ *    introduced as a side effect of image compression. 
+ * - to utilize Deep Learning algorithms to classify objects in images and derive contextual
+ *    contextual relationships.
+ */
+ 
+ https://en.wikipedia.org/wiki/Scale-invariant_feature_transform
+    ==> Can we do it in LISP? https://gist.github.com/lxc-xx/7088609
+ https://en.wikipedia.org/wiki/Restricted_Boltzmann_machine
+ https://en.wikipedia.org/wiki/Deep_belief_network
+ http://www.cs.utep.edu/ofuentes/Malagon_Fuentes_IVC.pdf
+ "Removing JPEG Blocking Artifacts Using Machine Learning" Quijas/Fuentes 2014
