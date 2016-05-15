@@ -11,9 +11,9 @@ data_drive_prefix = "H:"
 data_dir = data_drive_prefix + "/ImageNet_ILSVRC2015_SceneClassification_Small/data/"
 compressed_data_dir = data_drive_prefix + "/ImageNet_ILSVRC2015_SceneClassification_Small/compressed_data/"
 
-print 'Collecting files to compress (may take a while)...'
-start_time = time.time()
 for subdir, dirs, files in os.walk(data_dir):
+    print 'Collecting files to compress (may take a while)...'
+    start_time = time.time()
     i = 1
     for file in files:
         if i == 1:
@@ -28,5 +28,4 @@ for subdir, dirs, files in os.walk(data_dir):
             os.makedirs(new_subdir)
         image.save(new_subdir + '/' + file, "JPEG", quality=jpeg_quality)
         i += 1
-
-print "Batch compression of current subdir done in", (time.time() - start_time)/60.0, "minutes."
+    print "Batch compression of current subdir done in", (time.time() - start_time)/60.0, "minutes."
