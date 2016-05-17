@@ -12,8 +12,8 @@ from keras.callbacks import ModelCheckpoint
 from keras.datasets import mnist
 
 LOAD_PRETRAINED_MODEL = True
-# PRETRAINED_MODEL_FILE = './MNIST_weights/MNIST_weights_100e/weights.99-0.07.hdf5'
-PRETRAINED_MODEL_FILE = './MNIST_weights/MNIST_weights_100e/weights.00-0.08.hdf5'
+PRETRAINED_MODEL_FILE = './MNIST_weights/MNIST_weights_100e/weights.99-0.07.hdf5'
+# PRETRAINED_MODEL_FILE = './MNIST_weights/MNIST_weights_100e/weights.00-0.08.hdf5'
 
 def load_compressed_data(x_train, x_test):
     y_train = np.zeros(shape=x_train.shape)
