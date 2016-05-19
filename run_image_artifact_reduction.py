@@ -4,6 +4,7 @@ import os
 import random
 import time
 from scipy.ndimage import imread
+from scipy.misc import imsave
 import matplotlib.pyplot as plt
 import keras
 from keras.layers import Input, Dense, Convolution2D, MaxPooling2D, UpSampling2D, BatchNormalization, Activation, Dropout
@@ -12,10 +13,11 @@ from keras.callbacks import TensorBoard
 from keras.callbacks import ModelCheckpoint
 
 PRETRAINED_MODEL_FILE = "./weights/weights_400e_val_loss_0.5283.hdf5"
-IMAGE_FILE = "/media/neil/Neil's 250GB HDD/ImageNet_ILSVRC2015_SceneClassification_Small/compressed_data/test/Places2_test_00000001.jpg"
-# IMAGE_FILE = "/media/neil/Neil's 250GB HDD/JPEG_TEST.jpg"
+IMAGE_FILE = "/media/neil/Neil's 250GB HDD/ImageNet_ILSVRC2015_SceneClassification_Small/data/test/Places2_test_00000015.jpg"
+# IMAGE_FILE = "/media/neil/Neil's 250GB HDD/Meme.jpg"
 
-PRESERVE_COLOR = True
+PRESERVE_COLOR = False
+SAVE_IMAGE = False
 
 def reduce_image_artifacts(image):
     # if the image is RGB and we want to preserve it,
@@ -75,17 +77,21 @@ def reduce_image_artifacts(image):
     return image_out
 
 def main():
-    image = imread(IMAGE_FILE)
+    if PRESERVE_COLOR:
+        image = imread(IMAGE_FILE)
+    else:
+        image = imread(IMAGE_FILE, flatten=True)
     image_out = reduce_image_artifacts(image)
+    image_out = reduce_image_artifacts(image_out)
 
-    plt.figure(figsize=(20, 4))
+    plt.figure(figsize=(20, 10))
     # display original
     ax = plt.subplot(1, 2, 1)
     plt.imshow(image)
     plt.gray()
     ax.get_xaxis().set_visible(False)
     ax.get_yaxis().set_visible(False)
-    ax.set_title("Original")
+    ax.set_title("Compressed")
 
     # display cleaned
     ax = plt.subplot(1, 2, 2)
@@ -95,7 +101,11 @@ def main():
     ax.get_yaxis().set_visible(False)
     ax.set_title("Cleaned")
     plt.show()
-    a = 0
+
+    if SAVE_IMAGE:
+        imsave(IMAGE_FILE.split("/")[-1]+'.png', image_out)
+
+    return
 
 if __name__ == "__main__":
     main()

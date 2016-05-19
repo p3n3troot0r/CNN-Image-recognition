@@ -65,9 +65,10 @@ if TRAIN_MODEL:
 decoded_imgs = model.predict(compressed_test)
 
 # Display Results
-n = 20
+n = 10
 plt.figure(figsize=(20, 4))
-for i in range(1, n):
+for im in range(1, n):
+    i = random.randint(0, len(decoded_imgs))
     # display original
     ax = plt.subplot(3, n, i)
     plt.imshow(data_test[i].reshape(PATCH_LENGTH, PATCH_LENGTH))
